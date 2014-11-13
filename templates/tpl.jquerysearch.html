@@ -1,0 +1,81 @@
+<!-- BEGIN container_filter -->
+<style>
+	div.ContainerFilterForm {
+		height: 30px;
+		position: relative;
+	}
+
+	a#resetContainerFilter, input#livesearch {
+		height: 20px;
+		padding: 0;
+		margin: 0;
+		line-height: 20px;
+		width: 39px;
+	}
+
+	a#resetContainerFilter {
+		/*display: block;*/
+		display: none;
+		padding-left: 5px;
+		padding-right: 5px;
+		position: absolute;
+		right: -2px;
+		top: 0px;
+		text-align: center;
+	}
+
+	input#livesearch {
+		display: block;
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		width: 100%;
+	}
+	div.ContainerFilterInfo {
+		display: none;
+	}
+	a#ContainerFilterInfoButton {
+		background:            -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e7e8e6), color-stop(1, #d0d0cc));
+		background:            -moz-linear-gradient(center top, #e7e8e6 5%, #d0d0cc 100%);
+		filter:                progid:DXImageTransform.Microsoft.gradient(startColorstr = '#e7e8e6', endColorstr = '#d0d0cc');
+		background-color:      #e7e8e6;
+		-moz-border-radius:    10px;
+		-webkit-border-radius: 10px;
+		border-radius:         10px;
+		border:                1px solid #d0d0cc;
+		display:               inline-block;
+		color:                 #101010;
+		font-family:           arial;
+		font-size:             11px;
+		font-weight:           normal;
+		padding:               0px 8px;
+		text-decoration:       none;
+		margin-top:           5px;
+	}
+
+
+</style>
+<script type="text/javascript" src="./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/ContainerFilter/templates/jquery.livesearch.js"></script>
+<script type="text/javascript" src="./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/ContainerFilter/templates/quicksilver.js"></script>
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+		var $liveSearch = $('#livesearch');
+		$liveSearch.liveUpdate('{LIST}', '.ilCLI').focus();
+		$('#ContainerFilterInfoButton').click(function(){
+			$('div.ContainerFilterInfo').toggle();
+		});
+	});
+</script>
+<form method="get">
+	<div class="ContainerFilterForm">
+		<input type="text" value="" name="livesearch" id="livesearch" />
+		<a id="resetContainerFilter" class="submit">reset</a>
+	</div>
+	<!-- BEGIN container_filter_info -->
+	<a id="ContainerFilterInfoButton">Info</a>
+	<div class="ContainerFilterInfo">
+		<p>{INFOTEXT}</p>
+	</div>
+	<!-- END container_filter_info -->
+</form>
+<!-- END container_filter -->

@@ -1,0 +1,11 @@
+//
+// Copyright (c) 2014 Universitaet Bern
+//
+
+<!-- language file start -->
+title#:#Content-Filter
+show_on_desktop#:#Show filter on desktop
+show_in_repository#:#Show filter in repository
+show_quicksilver_info#:#Show search algorithm information button
+quicksilver_infotext#:#Use the filter to search in the ILIAS objects on the left. The search considers all entered characters individually. Example: the search query "<b>CSCO</b>" matches "<b>C</b>limate <b>Sc</b>ience C<b>o</b>lloquium", because the four characters are present in this order.
+configuration#:#Configuration

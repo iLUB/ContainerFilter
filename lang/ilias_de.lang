@@ -1,0 +1,11 @@
+//
+// Copyright (c) 2014 Universitaet Bern
+//
+
+<!-- language file start -->
+title#:#Inhalts-Filter
+show_on_desktop#:#Filter auf Schreibtisch anzeigen
+show_in_repository#:#Filter in Magazin (Kategorien, Kursen & Gruppen) anzeigen
+show_quicksilver_info#:#Information zum Suchalgorithmus anzeigen
+quicksilver_infotext#:#Nutzen Sie den Filter, um die links aufgelisteten ILIAS-Objekte zu durchsuchen. Die Suche verläuft für jedes eingegebene Zeichen einzeln. Beispiel: Die Suche nach "<b>WISO</b>" findet das Objekt mit dem Namen "<b>Wi</b>rtschafts- und <b>So</b>zialwissenschaftliche Fakultät", da die vier Zeichen in dieser Reihenfolge vorkommen.
+configuration#:#Konfiguration
