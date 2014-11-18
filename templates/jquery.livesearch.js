@@ -9,11 +9,12 @@
 		this.field = $(e);
 		this.line = line;
 		this.list = $(list);
+		this.top_element = undefined;
 
 		if (this.list.length > 0) {
 			this.init();
 		} else {
-			$('#block_pdsearch_0').hide();
+			$('#block_containerfilter_0').hide();
 		}
 	};
 
@@ -21,31 +22,46 @@
 		init:function () {
 			var self = this;
 			this.setupCache();
-			this.field.parent().find('#resetContainerFilter').click(function () {
-				self.field.val("");
-				self.filter();
+			this.field.parent().find('#resetContainerFilter').click(function (e) {
+				self.field.val('');
+				self.filter(e);
 			});
 
-			this.field.keyup(function () {
-				self.filter();
+			this.field.on('keyup keypress', function (e) {
+				self.filter(e);
 			});
 			self.filter();
+			this.field.closest('form').off('keyup keypress');
 		},
 
-		filter:function () {
+		filter:function (e) {
+			// open the top element when pressing enter (key code 13)
+			if (e !== undefined) {
+				var code = e.keyCode || e.which;
+				if (code  == 13) {
+					if (this.top_element !== undefined) {
+						var url = this.top_element.find('h4.il_ContainerItemTitle > a');
+						if (jQuery.type(url.attr('href')) === 'string') {
+							window.location.href = url.attr('href');
+						}
+					}
+					e.preventDefault();
+					return;
+				}
+			}
+
 			if ($.trim(this.field.val()) == '') {
 				this.list.find(this.line).parent('.ilCLIRow1').show();
 				this.list.find(this.line).parent('.ilCLIRow2').show();
 				this.list.find(this.line + ' .subitem').show();
 				this.list.find('.ilPDBlockSubHeader').show();
 				this.field.parent().find('#resetContainerFilter').hide();
-				$(document).off('keypress');
-				return;
-			}
-			else {
+				this.top_element = this.rows[0];
+				this.field.focus();
+			} else {
 				this.field.parent().find('#resetContainerFilter').show();
+				this.displayResults(this.getScores(this.field.val().toLowerCase()));
 			}
-			this.displayResults(this.getScores(this.field.val().toLowerCase()));
 		},
 
 		setupCache:function () {
@@ -86,16 +102,12 @@
 				}
 			});
 
-			// Allow opening the top item by pressing enter (keycode 13)
-			$(document).keypress(function (e) {
-				if (e.which == 13) {
-					var url = self.rows[scores[0].index].find('h4.il_ContainerItemTitle > a');
-					if (jQuery.type(url.attr('href')) === "string") {
-						window.location.href = url.attr('href');
-						e.preventDefault();
-					}
-				}
-			});
+			// Update the element that should be opened when pressing enter
+			if (scores.length > 0) {
+				this.top_element = self.rows[scores[0].index];
+			} else {
+				this.top_element = undefined;
+			}
 		},
 
 		getScores:function (term) {
