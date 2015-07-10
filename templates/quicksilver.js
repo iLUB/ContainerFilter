@@ -51,9 +51,6 @@ String.prototype.score = function(abbreviation, offset) {
 
 		var next_string       = this.substring(index+sub_abbreviation.length);
 		var next_abbreviation = null;
-
-		console.log(next_string);
-
 		if(i >= abbreviation.length)
 			next_abbreviation = '';
 		else
