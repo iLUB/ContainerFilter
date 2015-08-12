@@ -88,14 +88,14 @@
 
 		displayResults:function (scores) {
 			var self = this;
-			this.list.find(this.line).hide();
+			this.list.find(this.line).parent().hide();
 			this.list.find('.ilPDBlockSubHeader').hide();
 			$.each(scores, function (i, score) {
-				self.rows[score.index].show();
+				self.rows[score.index].parent().show();
 
 				var $subitems = self.rows[score.index].find('.subitem');
-				$subitems.hide();
-				for (var j = 0; j < score.children.length; j++) {
+                $subitems.hide();
+                for (var j = 0; j < score.children.length; j++) {
 					$($subitems[score.children[j].index]).show();
 				}
 			});
