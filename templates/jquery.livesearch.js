@@ -88,10 +88,10 @@
 
 		displayResults:function (scores) {
 			var self = this;
-			this.list.find(this.line).parent().hide();
+			this.list.find(this.line).hide();
 			this.list.find('.ilPDBlockSubHeader').hide();
 			$.each(scores, function (i, score) {
-				self.rows[score.index].parent().show();
+				self.rows[score.index].show();
 
 				var $subitems = self.rows[score.index].find('.subitem');
                 $subitems.hide();
