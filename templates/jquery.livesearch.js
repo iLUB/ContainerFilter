@@ -52,6 +52,7 @@
 
 			if ($.trim(this.field.val()) == '') {
 				this.list.find(this.line).show();
+                this.list.find(this.line).parent().show();
 				this.list.find(this.line + ' .subitem').show();
 				this.list.find('.ilPDBlockSubHeader').show();
 				this.field.parent().find('#resetContainerFilter').attr('disabled','disabled');
@@ -87,18 +88,28 @@
 		},
 
 		displayResults:function (scores) {
-			var self = this;
-			this.list.find(this.line).hide();
+            var self = this;
+
+            if(this.list.find(this.line).attr("class") != "ilHeader ilContainerBlockHeader") {
+                this.list.find(this.line).hide();
+            };
+            if(this.list.find(this.line).parent().attr("class") != "ilContainerBlock container-fluid form-inline") {
+                this.list.find(this.line).parent().hide();
+            };
+
+
 			this.list.find('.ilPDBlockSubHeader').hide();
 			$.each(scores, function (i, score) {
-				self.rows[score.index].show();
+                self.rows[score.index].show();
+                self.rows[score.index].parent().show();
 
 				var $subitems = self.rows[score.index].find('.subitem');
                 $subitems.hide();
                 for (var j = 0; j < score.children.length; j++) {
 					$($subitems[score.children[j].index]).show();
 				}
-			});
+
+            });
 
 			// Update the element that should be opened when pressing enter
 			if (scores.length > 0) {
@@ -123,7 +134,7 @@
 
 				if (score > 0 || child_scores.length > 0) {
 					scores.push({score : score, index : i, children : child_scores});
-					console.log('term: ' + term + ' index: ' + i + ' score: ' + score + ' number of children: ' + child_scores.length)
+					// console.log('term: ' + term + ' index: ' + i + ' score: ' + score + ' number of children: ' + child_scores.length)
 				}
 			}
 
