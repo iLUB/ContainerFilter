@@ -18,7 +18,7 @@ class ilContainerFilterBlockGUI extends ilBlockGUI {
 	 * Constructor
 	 */
 	public function __construct($container_selector) {
-		parent::ilBlockGUI();
+		parent::__construct();
 		$this->container_selector = $container_selector;
 		$this->plugin = new ilContainerFilterPlugin();
 		$this->setTitle($this->plugin->txt('title'));
