@@ -50,6 +50,17 @@
 				}
 			}
 
+			function isDesktop() {
+				if(navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i)
+					|| navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)
+					|| navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i)
+					|| navigator.userAgent.match(/Windows Phone/i)) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+
 			if ($.trim(this.field.val()) == '') {
 				this.list.find(this.line).show();
                 this.list.find(this.line).parent().show();
@@ -57,11 +68,14 @@
 				this.list.find('.ilPDBlockSubHeader').show();
 				this.field.parent().find('#resetContainerFilter').attr('disabled','disabled');
 				this.top_element = this.rows[0];
-				this.field.focus();
+				if(isDesktop()) {
+					this.field.focus();
+				}
 			} else {
 				this.field.parent().find('#resetContainerFilter').removeAttr('disabled');
 				this.displayResults(this.getScores(this.field.val().toLowerCase()));
 			}
+
 		},
 
 		setupCache:function () {
